@@ -1,5 +1,6 @@
 import { FetchProductUseCase } from '@/domain/products/application/useCases/fetch-products.usecase';
 import { BadRequestException, Controller, Get } from '@nestjs/common';
+import { ProductPresenter } from '../../presenters/product.presenter';
 
 @Controller('/products')
 export class FetchProductController {
@@ -14,7 +15,7 @@ export class FetchProductController {
     }
 
     return {
-      products,
+      products: products.value.products.map(ProductPresenter.toHTTP),
     };
   }
 }

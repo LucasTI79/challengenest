@@ -8,25 +8,25 @@ interface ProductProps {
 
 export class Product extends Entity<ProductProps> {
   get name() {
-    return this.name;
+    return this.props.name;
   }
   set name(name: string) {
-    this.name = name;
+    this.props.name = name;
   }
   get description() {
-    return this.description;
+    return this.props.description || '';
   }
   set description(description: string) {
-    this.description = description;
+    this.props.description = description;
   }
   get price() {
-    return this.price;
+    return this.props.price;
   }
   set price(price: number) {
-    this.price = price;
+    this.props.price = price;
   }
   static create(props: ProductProps, id?: number) {
-    const product = new Product(props, id);
+    const product = new Product({ ...props }, id);
     return product;
   }
 }

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { FetchProductController } from './product/fetch-products.controller';
-import { CreateProductController } from './product/create-product.controller';
+import { FetchProductController } from './controllers/product/fetch-products.controller';
+import { CreateProductController } from './controllers/product/create-product.controller';
 import { FetchProductUseCase } from '@/domain/products/application/useCases/fetch-products.usecase';
 import { CreateProductUseCase } from '@/domain/products/application/useCases/create-product.usecase';
 import { GrpcClientModule } from '../grpc/grpc-client.module';

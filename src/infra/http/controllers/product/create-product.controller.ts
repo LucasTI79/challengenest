@@ -1,5 +1,6 @@
 import { CreateProductUseCase } from '@/domain/products/application/useCases/create-product.usecase';
-import { ZodValidationPipe } from '@/infra/pipes/zod-validation-pipe';
+import { ProductGrpcMapper } from '@/infra/grpc/mappers/grpc-product.mapper';
+import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe';
 import {
   BadRequestException,
   Body,
@@ -8,6 +9,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { z } from 'zod';
+import { ProductPresenter } from '../../presenters/product.presenter';
 
 const createProductBodySchema = z.object({
   name: z.string(),
@@ -38,7 +40,7 @@ export class CreateProductController {
     }
 
     return {
-      products,
+      product: ProductPresenter.toHTTP(products.value.product),
     };
   }
 }

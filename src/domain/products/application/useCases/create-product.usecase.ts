@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ProductsRepository } from '../repositories/products.repository';
 import { Either, right } from '@/core/either';
 import { Product } from '../../enterprise/entities/product';
@@ -18,7 +18,10 @@ type CreateProductUseCaseResponse = Either<
 
 @Injectable()
 export class CreateProductUseCase {
-  constructor(private readonly productsRepository: ProductsRepository) {}
+  constructor(
+    // @Inject('ProductsRepository')
+    private readonly productsRepository: ProductsRepository,
+  ) {}
   async execute({
     name,
     description,
